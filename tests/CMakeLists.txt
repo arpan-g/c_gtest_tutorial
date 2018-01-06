@@ -13,8 +13,10 @@ set(CMAKE_C_FLAGS_DEBUG "-Wall -Wextra -g -O0")
 message(STATUS "pthread: " ${CMAKE_THREAD_LIBS_INIT})
 
 SET(SOURCES "addTests.cpp" "AllTests.cpp" "divTests.cpp" "mulTests.cpp" "subTests.cpp")
+#SET(SOURCES "../src/*.c") can also be done if you don't want to list out files individually
 SET(SOURCES ${SOURCES} "../src/addition.c" "../src/division.c" "../src/multiplication.c" "../src/subtract.c")
 
 add_executable(c_gtest_tutorial ${SOURCES})
+#pthread is required for gtest to function
 target_link_libraries (c_gtest_tutorial ${CMAKE_THREAD_LIBS_INIT} ${GTEST_BOTH_LIBRARIES} pthread)
 add_test(NAME mytest COMMAND c_gtest_tutorial)
